@@ -1,34 +1,37 @@
 variable "region" {
   type        = string
   description = "AWS region to use"
-  default = "us-east-1"
+  default     = "us-east-1"
+
 }
 
 variable "profile" {
   type        = string
   description = "Profile to use for deployment"
-  default = "dev"
+  default     = "dev"
+
 }
 
 variable "vpc_cidr_block" {
   type        = string
   description = "VPC CIDR block"
-  default = "10.0.0.0/16"
+  default     = "10.0.0.0/16"
+
 }
 
 variable "public_cidr_block" {
   type        = string
   description = "VPC CIDR block"
-  default = "0.0.0.0/0"
+  default     = "0.0.0.0/0"
 }
 
 variable "public_subnet_count" {
-  type = number
+  type    = number
   default = 3
 }
 
 variable "private_subnet_count" {
-  type = number
+  type    = number
   default = 3
 }
 
