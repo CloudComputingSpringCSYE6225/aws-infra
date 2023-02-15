@@ -1,5 +1,5 @@
 resource "aws_vpc" "vpc" {
-  cidr_block = var.vpc_cidr_block
+  cidr_block           = var.vpc_cidr_block
   enable_dns_hostnames = true
 }
 
@@ -16,11 +16,11 @@ data "aws_availability_zones" "zones" {
 resource "aws_subnet" "public_subnets" {
   count                   = var.public_subnet_count
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = cidrsubnet(var.vpc_cidr_block, 8, count.index+1)
+  cidr_block              = cidrsubnet(var.vpc_cidr_block, 8, count.index + 1)
   map_public_ip_on_launch = true
   availability_zone       = data.aws_availability_zones.zones.names[count.index]
   tags = {
-    Name ="Public Subnet-${count.index}"
+    Name = "Public Subnet-${count.index}"
   }
 }
 
@@ -44,11 +44,11 @@ resource "aws_route_table_association" "public_route_table_association" {
 resource "aws_subnet" "private_subnets" {
   count                   = var.private_subnet_count
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = cidrsubnet(var.vpc_cidr_block, 8, count.index+var.public_subnet_count+1)
+  cidr_block              = cidrsubnet(var.vpc_cidr_block, 8, count.index + var.public_subnet_count + 1)
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.zones.names[count.index]
   tags = {
-    Name ="Private Subnet-${count.index}"
+    Name = "Private Subnet-${count.index}"
   }
 }
 
