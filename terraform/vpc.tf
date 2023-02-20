@@ -1,6 +1,9 @@
 resource "aws_vpc" "vpc" {
   cidr_block           = var.vpc_cidr_block
   enable_dns_hostnames = true
+  tags = {
+    Name = "VPC-${local.timestamp_sanitized}"
+  }
 }
 
 resource "aws_internet_gateway" "internet_gateway" {
@@ -20,7 +23,7 @@ resource "aws_subnet" "public_subnets" {
   map_public_ip_on_launch = true
   availability_zone       = data.aws_availability_zones.zones.names[count.index]
   tags = {
-    Name = "Public Subnet-${count.index}"
+    Name = "Public Subnet-${count.index + 1}"
   }
 }
 
@@ -48,7 +51,7 @@ resource "aws_subnet" "private_subnets" {
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.zones.names[count.index]
   tags = {
-    Name = "Private Subnet-${count.index}"
+    Name = "Private Subnet-${count.index + 1}"
   }
 }
 

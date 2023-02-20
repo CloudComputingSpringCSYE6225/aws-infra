@@ -11,6 +11,10 @@ Use Terraform for Infrastructure as Code. Set up a Virtual Private Cloud (VPC) i
 - A public route table with all public subnets attached to it
 - A private route table with all private subnets attached to it
 - A public route in the public route table with the destination CIDR block 0.0.0.0/0 and the internet gateway created above as the target.
+- An EC2 instance which will be launched in the VPC created by the Terraform template. The EC2 instance will not be launched in the default VPC.
+- An EC2 security group for your EC2 instances that will host web applications. Add ingress rule to allow TCP traffic on ports 22, 80, 443, and port on which your application runs from anywhere in the world.
+
+Note: The values are not hardcoded in the Terraform files
 
 Note: The values are not hardcoded in the Terraform files
 
@@ -28,7 +32,9 @@ Note: The values are not hardcoded in the Terraform files
       git clone git@github.com:CloudComputingSpringCSYE6225/aws-infra.git
     ```
 2. In the command line, navigate to the directory where the vpc.tf file is located
-3. Place demo.tfvars file in this directory 
+
+3. Place demo.tfvars file in this directory
+
 4. Initialize the Terraform configuration file
     ```shell
       terraform init
@@ -49,5 +55,3 @@ Note: The values are not hardcoded in the Terraform files
     ```shell
       terraform destroy -var-file=demo.tfvars
     ```
-
-
