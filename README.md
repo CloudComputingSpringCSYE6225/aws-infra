@@ -16,6 +16,8 @@ Use Terraform for Infrastructure as Code. Set up a Virtual Private Cloud (VPC) i
 
 Note: The values are not hardcoded in the Terraform files
 
+Note: The values are not hardcoded in the Terraform files
+
 
 ### Prerequisites
 
@@ -30,7 +32,9 @@ Note: The values are not hardcoded in the Terraform files
       git clone git@github.com:CloudComputingSpringCSYE6225/aws-infra.git
     ```
 2. In the command line, navigate to the directory where the vpc.tf file is located
+
 3. Place demo.tfvars file in this directory
+
 4. Initialize the Terraform configuration file
     ```shell
       terraform init
@@ -51,4 +55,3 @@ Note: The values are not hardcoded in the Terraform files
     ```shell
       terraform destroy -var-file=demo.tfvars
     ```
-   
