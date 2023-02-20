@@ -21,7 +21,7 @@ variable "vpc_cidr_block" {
 
 variable "public_cidr_block" {
   type        = string
-  description = "VPC CIDR block"
+  description = "Public CIDR block"
   default     = "0.0.0.0/0"
 }
 
@@ -44,3 +44,34 @@ variable "private_subnet_count" {
 #  type = list
 #  default = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 #}
+
+variable "ami_id" {
+  type    = string
+  default = "ami-0c463a0c925814cfc"
+}
+
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+
+}
+
+variable "instance_volume_size" {
+  type    = number
+  default = 50
+}
+
+variable "instance_volume_type" {
+  type    = string
+  default = "gp2"
+}
+
+variable "app_port" {
+  type    = number
+  default = 8080
+}
+
+locals {
+  timestamp = "${timestamp()}"
+  timestamp_sanitized = "${replace("${local.timestamp}", "/[- TZ:]/", "")}"
+}
