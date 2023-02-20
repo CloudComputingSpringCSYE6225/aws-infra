@@ -72,6 +72,6 @@ variable "app_port" {
 }
 
 locals {
-  timestamp = "${timestamp()}"
-  timestamp_sanitized = "${replace("${local.timestamp}", "/[- TZ:]/", "")}"
+  timestamp           = timestamp()
+  timestamp_sanitized = replace("${local.timestamp}", "/[- TZ:]/", "")
 }
