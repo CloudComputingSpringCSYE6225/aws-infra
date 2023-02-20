@@ -1,5 +1,5 @@
 resource "aws_security_group" "app_security_group" {
-  name_prefix = "application"
+  name = "application"
   # Because
   depends_on = [aws_vpc.vpc]
   ingress {
