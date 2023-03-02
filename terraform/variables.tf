@@ -71,6 +71,44 @@ variable "app_port" {
   default = 8080
 }
 
+variable "db_engine" {
+  type    = string
+  default = "postgres"
+}
+
+variable "db_instance" {
+  type    = string
+  default = "db.t3.micro"
+}
+
+variable "db_multi_az" {
+  type    = bool
+  default = false
+}
+
+variable "db_instance_identifier" {
+  type    = string
+  default = "csye6225"
+}
+
+variable "db_username" {
+  type    = string
+  default = "csye6225"
+}
+
+variable "db_password" {
+  type = string
+}
+
+variable "db_name" {
+  type    = string
+  default = "csye6225"
+}
+
+variable "db_port" {
+  type    = number
+  default = 5432
+}
 locals {
   timestamp           = timestamp()
   timestamp_sanitized = replace("${local.timestamp}", "/[- TZ:]/", "")
