@@ -106,7 +106,7 @@ variable "db_name" {
 }
 
 variable "db_port" {
-  type = number
+  type    = number
   default = 5432
 }
 locals {
