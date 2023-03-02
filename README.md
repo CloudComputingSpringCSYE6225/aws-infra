@@ -12,9 +12,13 @@ Use Terraform for Infrastructure as Code. Set up a Virtual Private Cloud (VPC) i
 - A private route table with all private subnets attached to it
 - A public route in the public route table with the destination CIDR block 0.0.0.0/0 and the internet gateway created above as the target.
 - An EC2 instance which will be launched in the VPC created by the Terraform template. The EC2 instance will not be launched in the default VPC.
-- An EC2 security group for your EC2 instances that will host web applications. Add ingress rule to allow TCP traffic on ports 22, 80, 443, and port on which your application runs from anywhere in the world.
-
-Note: The values are not hardcoded in the Terraform files
+- An EC2 security group (Application) for your EC2 instances that will host web applications. Add ingress rule to allow TCP traffic on ports 22, 80, 443, and port on which your application runs from anywhere in the world. Add Egress rule to access anywhere in the world
+- An EC2 security group (Database) for your RDS instances. Add ingress rule to allow TCP traffic on the port 3306 for MySQL/MariaDB or 5432 for PostgreSQL.
+- An S3 bucket with a randomly generated name. A lifecycle policy for the bucket to transition objects from STANDARD storage class to STANDARD_IA storage class after 30 days
+- An RDS parameter group to match your database (Postgres or MySQL) and its version. Then RDS DB instance uses the new parameter group and not the default parameter group.
+- EC2 instance should be launched with user data which includes Database username, password, hostname, and S3 bucket name
+- An IAM Policy WebAppS3 that will allow EC2 instances to perform S3 buckets. This is required for applications on your EC2 instance to talk to the S3 bucket.
+- An IAM role EC2-CSYE6225 for the EC2 service and the WebAppS3 policy is attached to it. This role is attached to your EC2 instance.
 
 Note: The values are not hardcoded in the Terraform files
 
