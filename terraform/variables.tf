@@ -109,6 +109,17 @@ variable "db_port" {
   type    = number
   default = 5432
 }
+
+variable "zone_id" {
+  type    = string
+  default = "Z00034803453ULAEKDAMR"
+}
+
+variable "a_record_name" {
+  type    = string
+  default = "demo.rebeccabiju.me"
+}
+
 locals {
   timestamp           = timestamp()
   timestamp_sanitized = replace("${local.timestamp}", "/[- TZ:]/", "")
