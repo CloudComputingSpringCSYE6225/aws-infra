@@ -112,12 +112,12 @@ variable "db_port" {
 
 variable "zone_id" {
   type    = string
-  default = "Z00034803453ULAEKDAMR"
+  default = "Z09285461Z140NFYFQAFC"
 }
 
 variable "a_record_name" {
   type    = string
-  default = "demo.rebeccabiju.me"
+  default = "dev.rebeccabiju.me"
 }
 
 locals {
