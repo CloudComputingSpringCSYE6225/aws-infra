@@ -14,7 +14,12 @@ resource "aws_iam_role" "EC2-CSYE6225" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "WebAppS3_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "WebappS3_policy_attachment" {
   policy_arn = aws_iam_policy.WebAppS3.arn
+  role       = aws_iam_role.EC2-CSYE6225.name
+}
+
+resource "aws_iam_role_policy_attachment" "CloudWatch_policy_attachment" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   role       = aws_iam_role.EC2-CSYE6225.name
 }

@@ -9,9 +9,8 @@ resource "aws_iam_policy" "WebAppS3" {
           "s3:PutObject",
           "s3:GetObject",
           "s3:DeleteObject",
-          "s3:PutObjectAcl",
-          "s3:GetObjectAcl",
-          "s3:ListBucket"
+          #          "s3:PutObjectAcl",
+          #          "s3:GetObjectAcl"
         ],
         Effect = "Allow",
         Resource = [
@@ -22,3 +21,32 @@ resource "aws_iam_policy" "WebAppS3" {
     ]
   })
 }
+#
+#resource "aws_iam_policy" "WebAppCloudWatchAgent" {
+#  name = "WebAppCloudWatchAgent"
+#
+#  policy = jsonencode({
+#    Version = "2012-10-17"
+#    Statement = [
+#      {
+#        Action = [
+#          "cloudwatch:PutMetricData",
+#          "logs:PutLogEvents",
+#          "logs:CreateLogStream",
+#          "logs:CreateLogGroup"
+#        ],
+#        Effect = "Allow",
+#        Resource = [
+#          "*"
+#        ]
+#      },
+#      {
+#        Effect = "Allow",
+#        Action = [
+#          "ssm:GetParameter"
+#        ],
+#        Resource = ["arn:aws:ssm:*:*:parameter/AmazonCloudWatch-*"]
+#      }
+#    ]
+#  })
+#}
