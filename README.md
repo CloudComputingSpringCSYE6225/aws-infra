@@ -18,7 +18,12 @@ Use Terraform for Infrastructure as Code. Set up a Virtual Private Cloud (VPC) i
 - An RDS parameter group to match your database (Postgres or MySQL) and its version. Then RDS DB instance uses the new parameter group and not the default parameter group.
 - EC2 instance should be launched with user data which includes Database username, password, hostname, and S3 bucket name
 - An IAM Policy WebAppS3 that will allow EC2 instances to perform S3 buckets. This is required for applications on your EC2 instance to talk to the S3 bucket.
-- An IAM role EC2-CSYE6225 for the EC2 service and the WebAppS3 policy is attached to it. This role is attached to your EC2 instance.
+- An IAM role EC2-CSYE6225 for the EC2 service and the WebAppS3 policy is attached to it. This role is attached to your EC2 instance
+- The Terraform template adds/updates 'A' record to the Route53 zone so that the domain points to the EC2 instance and the web application is accessible through http://your-domain-name.tld/. Later, an Alias is given so that the domain points to the load balancer
+- An IAM Role for CloudWatch agent is attached to the EC2 instance. The policy attached is `CloudWatchAgentServerPolicy`
+- A Security group for Load Balancer is created and the application will now be accessed from Load Balancer IP only
+- `Autoscaling group` : Instead of launching standalone EC2 instances, we are now going to launch them in an auto-scaling group with a minimum of 1 instance and a maximum of 3.
+- When auto scaling is introduced, we create EC2 instances indirectly using a launch template and the resource of `aws_instance` is deleted
 
 Note: The values are not hardcoded in the Terraform files
 
