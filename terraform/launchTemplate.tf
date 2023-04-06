@@ -10,8 +10,8 @@ resource "aws_launch_template" "asg_launch_template" {
   name          = "asg_launch_config"
   image_id      = data.aws_ami.custom_ami.id
   instance_type = var.instance_type
-#  key_name      = var.key_name
-  user_data     = base64encode(data.template_file.userData.rendered)
+  #  key_name      = var.key_name
+  user_data = base64encode(data.template_file.userData.rendered)
   network_interfaces {
     associate_public_ip_address = true
     security_groups             = [aws_security_group.app_security_group.id]
