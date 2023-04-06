@@ -21,32 +21,24 @@ resource "aws_iam_policy" "WebAppS3" {
     ]
   })
 }
-#
-#resource "aws_iam_policy" "WebAppCloudWatchAgent" {
-#  name = "WebAppCloudWatchAgent"
-#
-#  policy = jsonencode({
-#    Version = "2012-10-17"
-#    Statement = [
-#      {
-#        Action = [
-#          "cloudwatch:PutMetricData",
-#          "logs:PutLogEvents",
-#          "logs:CreateLogStream",
-#          "logs:CreateLogGroup"
-#        ],
-#        Effect = "Allow",
-#        Resource = [
-#          "*"
-#        ]
-#      },
-#      {
-#        Effect = "Allow",
-#        Action = [
-#          "ssm:GetParameter"
-#        ],
-#        Resource = ["arn:aws:ssm:*:*:parameter/AmazonCloudWatch-*"]
-#      }
-#    ]
-#  })
-#}
+
+resource "aws_autoscaling_policy" "scaleUpPolicy" {
+  name                    = "Up policy"
+  policy_type             = "SimpleScaling"
+  scaling_adjustment      = 1
+  adjustment_type         = "ChangeInCapacity"
+  cooldown                = 60
+  autoscaling_group_name  = aws_autoscaling_group.app_autoscaling_group.name
+  metric_aggregation_type = "Average"
+}
+
+resource "aws_autoscaling_policy" "scaleDownPolicy" {
+  name                    = "Down policy"
+  policy_type             = "SimpleScaling"
+  scaling_adjustment      = -1
+  adjustment_type         = "ChangeInCapacity"
+  cooldown                = 60
+  autoscaling_group_name  = aws_autoscaling_group.app_autoscaling_group.name
+  metric_aggregation_type = "Average"
+
+}

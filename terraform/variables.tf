@@ -120,6 +120,11 @@ variable "a_record_name" {
   default = "dev.rebeccabiju.me"
 }
 
+variable "key_name" {
+  type    = string
+  default = "ec2"
+}
+
 locals {
   timestamp           = timestamp()
   timestamp_sanitized = replace("${local.timestamp}", "/[- TZ:]/", "")
