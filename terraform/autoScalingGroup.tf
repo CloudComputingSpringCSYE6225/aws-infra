@@ -7,10 +7,11 @@ resource "aws_autoscaling_group" "app_autoscaling_group" {
   vpc_zone_identifier = [for subnet in aws_subnet.public_subnets : subnet.id]
   launch_template {
     id      = aws_launch_template.asg_launch_template.id
-    version = "$Latest"
+    version = aws_launch_template.asg_launch_template.latest_version
   }
   health_check_type = "EC2"
-  #  termination_policies = ["OldestInstance", "Default"]
+
+  #    termination_policies = ["OldestInstance", "Default"]
   tag {
     key                 = "webapp"
     value               = "webappInstance"

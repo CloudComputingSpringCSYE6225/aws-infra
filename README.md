@@ -24,7 +24,10 @@ Use Terraform for Infrastructure as Code. Set up a Virtual Private Cloud (VPC) i
 - A Security group for Load Balancer is created and the application will now be accessed from Load Balancer IP only
 - `Autoscaling group` : Instead of launching standalone EC2 instances, we are now going to launch them in an auto-scaling group with a minimum of 1 instance and a maximum of 3.
 - When auto scaling is introduced, we create EC2 instances indirectly using a launch template and the resource of `aws_instance` is deleted
-
+- Command to import SSL Certificate into AWS Certificate Manager 
+   ```shell
+      aws acm import-certificate --profile <profile_name> --region us-east-1 --certificate fileb://<cretificate_file_in_crt> --private-key fileb://<private_key_in_pem> --certificate-chain fileb://<ca-bundle_file>
+    ```
 Note: The values are not hardcoded in the Terraform files
 
 
