@@ -29,4 +29,7 @@ resource "aws_db_instance" "main" {
   vpc_security_group_ids = [aws_security_group.db_security_group.id]
   skip_final_snapshot    = true
 
+  # Enable encryption
+  storage_encrypted = true
+  kms_key_id        = aws_kms_key.rdsKey.arn
 }
