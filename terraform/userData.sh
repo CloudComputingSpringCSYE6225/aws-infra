@@ -7,4 +7,6 @@
     echo "DB_DATABASE='${DB_DATABASE}'" >> /home/ec2-user/webapp/.env
     echo "DB_PORT='${DB_PORT}'" >> /home/ec2-user/webapp/.env
     echo "DB_HOST='${DB_HOST}'" >> /home/ec2-user/webapp/.env
+    echo "AWS_REGION='${AWS_REGION}'" >> /home/ec2-user/webapp/.env
+    echo "SNS_TOPIC_ARN='${SNS_TOPIC_ARN}'" >> /home/ec2-user/webapp/.env
     sudo systemctl restart webapp.service
