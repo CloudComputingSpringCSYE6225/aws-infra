@@ -14,8 +14,8 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 }
 
 resource "aws_db_instance" "main" {
-
   engine                 = var.db_engine
+  engine_version = "14.10"
   instance_class         = var.db_instance
   identifier             = var.db_instance_identifier
   db_name                = var.db_name

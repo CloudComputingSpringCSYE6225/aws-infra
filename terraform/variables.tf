@@ -129,3 +129,15 @@ locals {
   timestamp           = timestamp()
   timestamp_sanitized = replace("${local.timestamp}", "/[- TZ:]/", "")
 }
+
+variable "mailgun_api_key" {
+  type = string
+}
+
+variable "mailgun_domain" {
+  type = string
+}
+
+variable "mailgun_sender" {
+  type = string
+}

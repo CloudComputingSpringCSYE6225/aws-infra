@@ -9,8 +9,9 @@ resource "aws_iam_policy" "WebAppS3" {
           "s3:PutObject",
           "s3:GetObject",
           "s3:DeleteObject",
-          #          "s3:PutObjectAcl",
-          #          "s3:GetObjectAcl"
+          "s3:PutObjectAcl",
+          "s3:GetObjectAcl",
+          "s3:PutBucketAcl"
         ],
         Effect = "Allow",
         Resource = [

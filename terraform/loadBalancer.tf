@@ -27,10 +27,10 @@ resource "aws_lb_target_group" "LBTargetGroup" {
 
 resource "aws_lb_listener" "LBListener" {
   load_balancer_arn = aws_lb.applicationLB.arn
-  port              = 443
-  protocol          = "HTTPS"
-  certificate_arn   = data.aws_acm_certificate.issued.arn
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  port              = 80
+  protocol          = "HTTP"
+  #  certificate_arn   = data.aws_acm_certificate.issued.arn
+  #  ssl_policy        = "ELBSecurityPolicy-2016-08"
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.LBTargetGroup.arn

@@ -7,5 +7,7 @@ data "template_file" "userData" {
     DB_DATABASE     = var.db_name
     DB_PORT         = var.db_port
     DB_HOST         = aws_db_instance.main.address
+    AWS_REGION      = var.region
+    SNS_TOPIC_ARN   = aws_sns_topic.image_updates.arn
   }
 }
