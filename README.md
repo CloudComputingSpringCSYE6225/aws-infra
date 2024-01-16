@@ -28,6 +28,8 @@ Use Terraform for Infrastructure as Code. Set up a Virtual Private Cloud (VPC) i
    ```shell
       aws acm import-certificate --profile <profile_name> --region us-east-1 --certificate fileb://<cretificate_file_in_crt> --private-key fileb://<private_key_in_pem> --certificate-chain fileb://<ca-bundle_file>
     ```
+- `AWS Lambda`: We have created a lambda function that is triggered on SNS topic. We have subscribed to SNS topic `image-updates-topic`
+- The data is stored in a dynamo DB from Lambda function
 Note: The values are not hardcoded in the Terraform files
 
 
